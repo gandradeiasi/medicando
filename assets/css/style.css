@@ -1,0 +1,80 @@
+/* módulos */
+
+.white-color {
+    color: white;
+}
+
+.fit-contet {
+    width: fit-content;
+}
+
+.blue-bg {
+    background-color: #0d76c7;
+}
+
+.center-xy {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.btn-wide {
+    text-align: center;
+    width: 250px;
+    height: 40px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.green-bg {
+    background-color: #1fad47;
+}
+
+.color-blue {
+    color: #0d76c7;
+}
+
+.input-inicio {
+    padding: 0px 0px 5px 25px;
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.input-inicio:focus {
+    outline: none;
+}
+
+.i-input-inicio {
+    position: absolute;
+    opacity: 0.5;
+    margin-top: 5px;
+}
+
+/* Elementos específicos */
+
+.profile-icon {
+    font-size: 30px;
+}
+
+.profile-circle {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.logo-medicando {
+    max-width: 200px;
+}
+
+.h-inicio {
+    font-weight: normal;
+    font-size: 2rem;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Medicando</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="center-xy" id="tela-inicio">
+            <img src="assets/img/logo-medicando.png" class="d-block mx-auto logo-medicando mb-5">
+            <button class="d-block mx-auto btn-wide blue-bg mb-3" onclick='toggleLogin("login")'>Login</button>
+            <button class="d-block mx-auto btn-wide green-bg" onclick='toggleLogin("registrar")'>Registrar</button>
+        </div>
+        <div class="center-xy" id="tela-login">
+            <img src="assets/img/logo-medicando.png" class="d-block mx-auto logo-medicando mb-5">
+            <h1 class="text-center color-blue h-inicio mb-5">Bem Vindo!</h1>
+            <form>
+                <div>
+                    <i class="far fa-envelope i-input-inicio"></i>
+                    <input type="text" class="d-block mx-auto input-inicio mb-4" placeholder="Seu e-mail">
+                </div>
+                <div>
+                    <i class="fas fa-key i-input-inicio"></i>
+                    <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-5">
+                </div>
+                <input class="d-block mx-auto btn-wide blue-bg mb-3" type="submit" value="Login">
+            </form>
+        </div>
+        <div class="center-xy" id="tela-registro">
+            <img src="assets/img/logo-medicando.png" class="d-block mx-auto logo-medicando mb-5">
+            <button class="d-block mx-auto btn-wide blue-bg mb-3" onclick='toggleLogin("login")'>Login</button>
+            <button class="d-block mx-auto btn-wide green-bg" onclick='toggleLogin("registrar")'>Registrar</button>
+        </div>
+    </div>
+</body>
+
+</html>
