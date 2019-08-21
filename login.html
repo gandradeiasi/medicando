@@ -17,27 +17,35 @@
         <div class="center-xy" id="tela-inicio">
             <img src="assets/img/logo-medicando.png" class="d-block mx-auto logo-medicando mb-5">
             <button class="d-block mx-auto btn-wide blue-bg mb-3" onclick='toggleLogin("login")'>Login</button>
-            <button class="d-block mx-auto btn-wide green-bg" onclick='toggleLogin("registrar")'>Registrar</button>
+            <button class="d-block mx-auto btn-wide green-bg" onclick='toggleLogin("registro")'>Registrar</button>
         </div>
         <div class="center-xy" id="tela-login">
             <img src="assets/img/logo-medicando.png" class="d-block mx-auto logo-medicando mb-5">
             <h1 class="text-center color-blue h-inicio mb-5">Bem Vindo!</h1>
             <form>
-                <div>
-                    <i class="far fa-envelope i-input-inicio"></i>
-                    <input type="text" class="d-block mx-auto input-inicio mb-4" placeholder="Seu e-mail">
-                </div>
-                <div>
-                    <i class="fas fa-key i-input-inicio"></i>
-                    <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-5">
-                </div>
+                <i class="far fa-envelope i-input-inicio"></i>
+                <input type="text" class="d-block mx-auto input-inicio mb-4" placeholder="Seu e-mail">
+                <i class="fas fa-key i-input-inicio"></i>
+                <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-5">
                 <input class="d-block mx-auto btn-wide blue-bg mb-3" type="submit" value="Login">
             </form>
+            <a class="text-center d-block link-medicando">Esqueceu sua senha?</a>
         </div>
         <div class="center-xy" id="tela-registro">
-            <img src="assets/img/logo-medicando.png" class="d-block mx-auto logo-medicando mb-5">
-            <button class="d-block mx-auto btn-wide blue-bg mb-3" onclick='toggleLogin("login")'>Login</button>
-            <button class="d-block mx-auto btn-wide green-bg" onclick='toggleLogin("registrar")'>Registrar</button>
+            <h1 class="text-center color-blue h-inicio mb-5">Registrar</h1>
+            <form>
+                <label for="registro-email" class="w-100 mb-0">Escolha seu e-mail</label>
+                <i class="far fa-envelope i-input-inicio"></i>
+                <input type="text" class="d-block mx-auto input-inicio mb-5" placeholder="Seu e-mail">
+                <label for="registro-email" class="w-100 mb-0">Escolha sua senha</label>
+                <i class="fas fa-key i-input-inicio"></i>
+                <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-4">
+                <label for="registro-email" class="w-100 mb-0">Confirme sua senha</label>
+                <i class="fas fa-key i-input-inicio"></i>
+                <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-4">
+                <input type="submit" class="d-block mx-auto btn-wide green-bg" onclick='toggleLogin("login")'
+                    value="Registrar">
+            </form>
         </div>
     </div>
 </body>

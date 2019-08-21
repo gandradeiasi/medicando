@@ -38,10 +38,10 @@
 }
 
 .input-inicio {
-    padding: 0px 0px 5px 25px;
+    padding: 0px 0px 7px 25px;
     width: 250px;
     border: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #757575;
 }
 
 .input-inicio:focus {
@@ -50,8 +50,17 @@
 
 .i-input-inicio {
     position: absolute;
-    opacity: 0.5;
+    color: #757575;
     margin-top: 5px;
+    margin-left: 2px;
+}
+
+.link-medicando {
+    color: #757575 !important;
+}
+
+.link-medicando:hover, .link-medicando:active, .link-medicando:focus {
+    color: black !important;
 }
 
 /* Elementos específicos */
