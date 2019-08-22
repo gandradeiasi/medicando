@@ -32,18 +32,41 @@
             <a class="text-center d-block link-medicando">Esqueceu sua senha?</a>
         </div>
         <div class="center-xy" id="tela-registro">
-            <h1 class="text-center color-blue h-inicio mb-5">Registrar</h1>
+            <h1 class="text-center color-blue h-inicio my-5">Registrar</h1>
             <form>
+                <div class="d-flex bb-black mb-3">
+                    <label class="mb-0">Nome:</label>
+                    <input type="text" class="input-alt">
+                </div>
+                <div class="d-flex bb-black mb-3">
+                    <label class="mb-0">Sobrenome:</label>
+                    <input type="text" class="input-alt">
+                </div>
+                <div class="d-flex bb-black mb-3">
+                    <label class="mb-0">Gênero:</label>
+                    <span class="mb-1p">
+                        <input type="radio" name="genero" class="radio-alt ml-4 mr-1">
+                        <label class="mb-0">F</label>
+                        <input type="radio" name="genero" class="radio-alt ml-4 mr-1">
+                        <label class="mb-0">M</label>
+                        <input type="radio" name="genero" class="radio-alt ml-4 mr-1">
+                        <label class="mb-0">Outro</label>
+                    </span>
+                </div>
+                <div class="d-flex bb-black mb-4">
+                    <label class="mb-0">Data de nascimento:</label>
+                    <input type="date" class="input-alt">
+                </div>
                 <label for="registro-email" class="w-100 mb-0">Escolha seu e-mail</label>
                 <i class="far fa-envelope i-input-inicio"></i>
-                <input type="text" class="d-block mx-auto input-inicio mb-5" placeholder="Seu e-mail">
+                <input type="text" class="d-block mx-auto input-inicio mb-4" placeholder="Seu e-mail">
                 <label for="registro-email" class="w-100 mb-0">Escolha sua senha</label>
                 <i class="fas fa-key i-input-inicio"></i>
-                <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-4">
+                <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-3">
                 <label for="registro-email" class="w-100 mb-0">Confirme sua senha</label>
                 <i class="fas fa-key i-input-inicio"></i>
                 <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-4">
-                <input type="submit" class="d-block mx-auto btn-wide green-bg" onclick='toggleLogin("login")'
+                <input type="submit" class="d-block mx-auto btn-wide green-bg mb-5" onclick='toggleLogin("login")'
                     value="Registrar">
             </form>
         </div>

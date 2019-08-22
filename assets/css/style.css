@@ -39,9 +39,9 @@
 
 .input-inicio {
     padding: 0px 0px 7px 25px;
-    width: 250px;
     border: none;
     border-bottom: 1px solid #757575;
+    width: 100%;
 }
 
 .input-inicio:focus {
@@ -61,6 +61,31 @@
 
 .link-medicando:hover, .link-medicando:active, .link-medicando:focus {
     color: black !important;
+}
+
+.bb-black {
+    border-bottom: 1px solid black;
+}
+
+.input-alt {
+    border: none;
+    flex: 1;
+    padding-left: 7px;
+    margin-bottom: 1px;
+    position: relative;
+    bottom: 1px;
+}
+
+.input-alt:focus {
+    outline: none;
+}
+
+.radio-alt {
+    margin-top: 7px;
+}
+
+.mb-1p {
+    margin-bottom: 1px !important;
 }
 
 /* Elementos específicos */
