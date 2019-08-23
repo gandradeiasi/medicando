@@ -88,20 +88,35 @@
     margin-bottom: 1px !important;
 }
 
+.container-fluid {
+    padding: 0 !important;
+}
+
+.btn-reset {
+    border: none;
+    background: transparent;
+    padding: 0px;
+}
+
+.btn-reset:active, .btn-reset:focus {
+    outline: none;
+}
+
+.btn-menu {
+    background: white;
+    border: 1px solid black
+}
+
+.divisoria-branca {
+    height: max-content;
+    width: 2px;
+    background: white
+}
+
 /* Elementos específicos */
 
 .profile-icon {
     font-size: 30px;
-}
-
-.profile-circle {
-    position: absolute;
-    left: -2px;
-    top: -2px;
-    height: 34px;
-    width: 34px;
-    border-radius: 50%;
-    border: 2px solid white;
 }
 
 .logo-medicando {
@@ -111,4 +126,27 @@
 .h-inicio {
     font-weight: normal;
     font-size: 2rem;
+}
+
+.btn-profile {
+    cursor: pointer;
+}
+
+.btn-menu-dt {
+    border: none !important;
+    color: white;
+    background: transparent;
+    margin-left: 22px;
+}
+
+@media (max-width:767px) {
+    .dt-only {
+        display: none !important;
+    }
+}
+
+@media (min-width:768px) {
+    .mb-only {
+        display: none !important;
+    }
 }

@@ -12,14 +12,43 @@
 </head>
 
 <body>
-	<div class="container">
-		<div class="w-100 white-color align-itens-center blue-bg">
-			<span>
-				<div class="profile-circle"></div>
-				<i class="fas fa-user profile-icon"></i>
+	<div class="container-fluid blue-bg">
+		<div class="container blue-bg align-itens-center py-2 d-flex">
+			<button class="btn-profile d-flex btn-reset white-color">
+				<i class="fas fa-user profile-icon align-self-center ml-2"></i>
+				<span class="align-self-center ml-2">Perfil</span>
+				<i class="fas fa-caret-down align-self-center ml-2"></i>
+			</button>
+			<span class="flex-fill text-right dt-only">
+				<button class="btn-menu-dt flex-fill">
+					<i class="fas fa-home"></i>
+					<div class="w-100">Início</div>
+				</button>
+				<span class="divisoria-branca"></span>
+				<button class="btn-menu-dt flex-fill">
+					<i class="fas fa-capsules"></i>
+					<div class="w-100">Medicamentos</div>
+				</button>
+				<button class="btn-menu-dt flex-fill">
+					<i class="fas fa-globe-americas"></i>
+					<div class="w-100">Localização</div>
+				</button>
 			</span>
-			<span>Perfil</span>
 		</div>
+	</div>
+	<div class="container-fluid d-flex mb-only">
+		<button class="btn-menu flex-fill">
+			<i class="fas fa-home"></i>
+			<div class="w-100">Início</div>
+		</button>
+		<button class="btn-menu flex-fill">
+			<i class="fas fa-capsules"></i>
+			<div class="w-100">Medicamentos</div>
+		</button>
+		<button class="btn-menu flex-fill">
+			<i class="fas fa-globe-americas"></i>
+			<div class="w-100">Localização</div>
+		</button>
 	</div>
 </body>
 
