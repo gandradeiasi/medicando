@@ -113,7 +113,31 @@
     background: white
 }
 
+.bg-gray {
+    background-color: lightgray
+}
+
+.round-border {
+    border-radius: 5px;
+}
+
+.h-2p {
+    height: 2px;
+}
+
+.lh-1 {
+    line-height: 1;
+}
+
 /* Elementos específicos */
+
+.remedios-wrapper {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    position: relative;
+    top: -3px;
+}
 
 .profile-icon {
     font-size: 30px;
@@ -137,6 +161,18 @@
     color: white;
     background: transparent;
     margin-left: 22px;
+}
+
+.square-horario {
+    max-width: 320px;
+}
+
+.mt-50p {
+    margin-top: 50px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
 
 @media (max-width:767px) {
