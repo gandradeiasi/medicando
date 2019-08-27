@@ -6,12 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/jquery-3.4.1.min.js"></script>
+	<script src="assets/js/script.js"></script>
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
+	<!-- Header -->
 	<div class="container-fluid blue-bg">
 		<div class="container blue-bg align-itens-center py-2 d-flex">
 			<button class="btn-profile d-flex btn-reset white-color">
@@ -20,16 +22,16 @@
 				<i class="fas fa-caret-down align-self-center ml-2"></i>
 			</button>
 			<span class="flex-fill text-right dt-only">
-				<button class="btn-menu-dt flex-fill">
+				<button class="btn-menu-dt flex-fill btn-home">
 					<i class="fas fa-home"></i>
 					<div class="w-100">Início</div>
 				</button>
 				<span class="divisoria-branca"></span>
-				<button class="btn-menu-dt flex-fill">
+				<button class="btn-menu-dt flex-fill btn-medicamentos">
 					<i class="fas fa-capsules"></i>
 					<div class="w-100">Medicamentos</div>
 				</button>
-				<button class="btn-menu-dt flex-fill">
+				<button class="btn-menu-dt flex-fill btn-localizacao">
 					<i class="fas fa-globe-americas"></i>
 					<div class="w-100">Localização</div>
 				</button>
@@ -37,52 +39,84 @@
 		</div>
 	</div>
 	<div class="container-fluid d-flex mb-only">
-		<button class="btn-menu flex-fill">
+		<button class="btn-menu flex-fill btn-home">
 			<i class="fas fa-home"></i>
 			<div class="w-100">Início</div>
 		</button>
-		<button class="btn-menu flex-fill">
+		<button class="btn-menu flex-fill btn-medicamentos">
 			<i class="fas fa-capsules"></i>
 			<div class="w-100">Medicamentos</div>
 		</button>
-		<button class="btn-menu flex-fill">
+		<button class="btn-menu flex-fill btn-localizacao">
 			<i class="fas fa-globe-americas"></i>
 			<div class="w-100">Localização</div>
 		</button>
 	</div>
-	<div id="tela-home">
+	<!-- Home -->
+	<div id="tela-home" class="container">
 		<h2 class="text-center my-4">Horários</h2>
-		<div class="square-horario mx-auto lh-1 mb-4">
-			<div class="green-bg white-color p-3 round-border">
-				<i class="fas fa-caret-down fa-2x ml-2 position-absolute"></i>
-				<h3 class="text-center mb-0">14:00</h3>
-			</div>
-			<div class="remedios-wrapper">
-				<div class="d-flex py-3">
-					<i class="fas fa-capsules align-self-center fa-2x mx-3"></i>
-					<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
-					<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="square-horario mx-auto lh-1 mb-4">
+					<div class="green-bg white-color p-3 round-border">
+						<i class="fas fa-caret-down fa-2x ml-2 position-absolute"></i>
+						<h3 class="text-center mb-0">14:00</h3>
+					</div>
+					<div class="remedios-wrapper">
+						<div class="d-flex py-3">
+							<i class="fas fa-capsules align-self-center fa-2x mx-3"></i>
+							<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
+							<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
+						</div>
+						<div class="bg-gray h-2p w-100"></div>
+						<div class="d-flex py-3">
+							<i class="fas fa-tablets align-self-center fa-2x mx-3"></i>
+							<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
+							<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
+						</div>
+					</div>
 				</div>
-				<div class="bg-gray h-2p w-100"></div>
-				<div class="d-flex py-3">
-					<i class="fas fa-tablets align-self-center fa-2x mx-3"></i>
-					<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
-					<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
+			</div>
+			<div class="col-lg-4">
+				<div class="square-horario mx-auto lh-1 mb-4">
+					<div class="green-bg white-color p-3 round-border">
+						<i class="fas fa-caret-down fa-2x ml-2 position-absolute"></i>
+						<h3 class="text-center mb-0">19:00</h3>
+					</div>
+					<div class="remedios-wrapper">
+						<div class="d-flex py-3">
+							<i class="fas fa-capsules align-self-center fa-2x mx-3"></i>
+							<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
+							<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="square-horario mx-auto lh-1">
+					<div class="green-bg white-color p-3 round-border">
+						<i class="fas fa-caret-down fa-2x ml-2 position-absolute"></i>
+						<h3 class="text-center mb-0">19:00</h3>
+					</div>
+					<div class="remedios-wrapper">
+						<div class="d-flex py-3">
+							<i class="fas fa-capsules align-self-center fa-2x mx-3"></i>
+							<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
+							<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="square-horario mx-auto lh-1">
-			<div class="green-bg white-color p-3 round-border">
-				<i class="fas fa-caret-down fa-2x ml-2 position-absolute"></i>
-				<h3 class="text-center mb-0">19:00</h3>
-			</div>
-			<div class="remedios-wrapper">
-				<div class="d-flex py-3">
-					<i class="fas fa-capsules align-self-center fa-2x mx-3"></i>
-					<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
-					<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
-				</div>
-			</div>
+	</div>
+	<!-- Medicamentos -->
+	<div id="tela-medicamentos">
+		medicamentos
+	</div>
+	<!-- Localização -->
+	<div id="tela-localizacao">
+		<div class="container">
+			<iframe width="100%" height="450" src="https://www.google.com/maps/embed"></iframe>
 		</div>
 	</div>
 </body>
