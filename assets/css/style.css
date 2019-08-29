@@ -67,6 +67,10 @@
     border-bottom: 1px solid black;
 }
 
+.hover-black:hover {
+    color: black !important;
+}
+
 .input-alt {
     border: none;
     flex: 1;
@@ -130,6 +134,12 @@
 }
 
 /* Elementos específicos */
+
+.lista-remedios {
+    max-width: 600px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 .remedios-wrapper {
     border-left: 1px solid black;
