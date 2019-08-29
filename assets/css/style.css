@@ -133,6 +133,10 @@
     line-height: 1;
 }
 
+.w-fit-content {
+    width: fit-content !important;
+}
+
 /* Elementos específicos */
 
 .lista-remedios {
