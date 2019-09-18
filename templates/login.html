@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
     <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js')}}"></script>
-    <script src="{{url_for('static',filename='js/script.js')}}"></script>
+    <script src="{{url_for('static',filename='js/login.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/font-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
@@ -63,9 +63,9 @@
                 <i class="far fa-envelope i-input-inicio"></i>
                 <input type="text" name="email" class="d-block mx-auto input-inicio mb-4" id="registro-email"
                     placeholder="Seu e-mail">
-                <label for="registro-senha" name="senha" class="w-100 mb-0">Escolha sua senha</label>
+                <label for="registro-senha" class="w-100 mb-0">Escolha sua senha</label>
                 <i class="fas fa-key i-input-inicio"></i>
-                <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-3"
+                <input type="password" name="senha" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-3"
                     id="registro-senha">
                 <label for="registro-confirma-senha" class="w-100 mb-0">Confirme sua senha</label>
                 <i class="fas fa-key i-input-inicio"></i>

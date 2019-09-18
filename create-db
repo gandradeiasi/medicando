@@ -1,0 +1,14 @@
+CREATE TABLE `gaveta` (
+  `id` int(11) NOT NULL,
+  `id_paciente` int(11) DEFAULT NULL,
+  `hora` time DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `paciente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(256) DEFAULT NULL,
+  `senha` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) 
+

@@ -1,9 +1,11 @@
-from flask import Flask, request, make_response, render_template
+from flask import Flask, request, make_response, render_template, jsonify
 import mysql.connector
 import json
 
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
+
+chaveAuth = "#$seC"
 
 # Funções de renderização de view
 
@@ -11,31 +13,34 @@ app.config["JSON_AS_ASCII"] = False
 def telaLogin():
     return render_template("login.html")
 
+@app.route("/home")
+def telaHome():
+    return render_template("index.html")
+
 
 
 # Funções de serviço
 
 @app.route("/registrar", methods=["POST"])
 def registrar():
-    email = request.form.get("email", False)
-    senha = request.form.get("senha", False)
+    email = request.form["email"]
+    senha = request.form["senha"]
     sqlQuery("insert into paciente set email = '" + email + "', senha = '" + str(hash(senha)) + "'")
+    return jsonify({"msg":"ok"})
 
 
 @app.route("/login")
 def login():
     email = request.args.get("email")
     senha = request.args.get("senha")
-    for retorno in select("select * from paciente where email = '" + email + "' and senha = '" + str(hash(senha)) + "'"):
-        return '{ok}'
-    return '{erro}'
+    for retorno in select("select id from paciente where email = '" + email + "' and senha = '" + str(hash(senha)) + "'"):
+        return jsonify({"id":retorno[0],"key":hash(chaveAuth+str(senha)+str(retorno[0]))})
+    return jsonify({"msg":"erro"})
 
 
 @app.route("/horarioGaveta")
 def horarioGaveta():
     idGaveta = request.args.get("idGaveta")
-    data = []
-    count = 0
 
     return (
         "{"
@@ -72,10 +77,12 @@ def conectar():
 
 
 def sqlQuery(query):
+    print(query)
     mydb = conectar()
     mycursor = mydb.cursor()
     mycursor.execute(query)
-    mycursor.close()
+    mydb.commit()
+    mydb.close()
 
 def select(query):
     mydb = conectar()
