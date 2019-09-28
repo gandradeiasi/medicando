@@ -1,6 +1,6 @@
-DROP TABLE remedio;
-DROP TABLE gaveta;
-DROP TABLE usuario;
+DROP TABLE IF EXISTS remedio;
+DROP TABLE IF EXISTS gaveta;
+DROP TABLE IF EXISTS usuario;
 
 CREATE TABLE `usuario` (
   `id` int NOT NULL AUTO_INCREMENT,

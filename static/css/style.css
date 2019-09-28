@@ -137,6 +137,10 @@
     width: fit-content !important;
 }
 
+.hover-red:hover {
+    color: red
+}
+
 /* Elementos específicos */
 
 .editHorario {

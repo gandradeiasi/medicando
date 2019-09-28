@@ -7,10 +7,10 @@ $(document).ready(function () {
     $(".btn-medicamentos").on("click", function () { toggleHome("medicamentos") });
     $(".btn-farmacias").on("click", function () { toggleHome("farmacias") });
     $(".editHorario").on("click", function () { $("#formRegistrarHorario input[name='idGaveta']").val($(this).val()) });
+    $(".addRemedio").on("click", function () { $("#formNovoRemedio input[name='idGaveta']").val($(this).val()) });
 
     //Consulta horarios
     consultaHorarios();
-    consultaRemedios();
 
     //Form
     $("#formRegistrarHorario").submit(function (e) {
@@ -38,7 +38,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (retorno) {
                 $("#modalNovoRemedio").modal("hide");
-                if (retorno.msg == "ok") consultaRemedios();
+                if (retorno.msg == "ok") consultaRemedios($('#formNovoRemedio input[name="idGaveta"]').val());
             }
         });
     });
@@ -83,54 +83,73 @@ function consultaHorarios() {
         "dataType": "json",
         success: function (retorno) {
             $("#horario1").html(JSON.parse(retorno[0]).hora);
-            $("#editHorario1, #remedios1, addRemedio1").val(JSON.parse(retorno[0]).id);
+            $("#editHorario1, #remedios1, #addRemedio1").val(JSON.parse(retorno[0]).id);
+            consultaRemedios(JSON.parse(retorno[0]).id);
 
             $("#horario2").html(JSON.parse(retorno[1]).hora);
-            $("#editHorario2, #remedios2, addRemedio2").val(JSON.parse(retorno[1]).id);
+            $("#editHorario2, #remedios2, #addRemedio2").val(JSON.parse(retorno[1]).id);
+            consultaRemedios(JSON.parse(retorno[1]).id);
 
             $("#horario3").html(JSON.parse(retorno[2]).hora);
-            $("#editHorario3, #remedios2, addRemedio2").val(JSON.parse(retorno[2]).id);
+            $("#editHorario3, #remedios3, #addRemedio3").val(JSON.parse(retorno[2]).id);
+            consultaRemedios(JSON.parse(retorno[2]).id);
         }
     });
 }
 
-function consultaRemedios(divId) {
+function consultaRemedios(idGaveta) {
     $.ajax({
-        "url": window.location.origin + "/consultaRemedios?idGaveta=" + $(divId).val(),
+        "url": window.location.origin + "/consultaRemedios?idGaveta=" + idGaveta,
         "dataType": "json",
         success: function (retorno) {
             let htmlToAdd = "";
 
-            for (let remedio in retorno) {
+            for (let remedio of retorno) {
 
                 let json = JSON.parse(remedio);
 
                 let iconeRemedio;
 
                 switch (json.icone) {
-                    case "0":
+                    case 0:
                         iconeRemedio = "<i class='fas fa-tablets align-self-center fa-2x mx-3'></i>";
                         break;
-                    case "1":
+                    case 1:
                         iconeRemedio = "<i class='fas fa-capsules align-self-center fa-2x mx-3'></i>";
                         break;
-                    case "2":
+                    case 2:
                     default:
                         iconeRemedio = "<i class='fas fa-pills align-self-center fa-2x mx-3'></i>";
                         break;
                 }
 
                 htmlToAdd += `
-                    <div class="d-flex py-3">
+                    <div class="d-flex py-3 align-items-center">
                         ${iconeRemedio}
-                        <span class="align-self-center">${json.nome}</span>
-                        <i class="fas fa-times" value="${json.id}"></i>
+                        <span class="flex-fill">${json.nome}</span>
+                        <i class="fas fa-times mx-3 cursor-pointer hover-red deletaRemedio" value="${json.id}"></i>
                     </div>
                     <div class="bg-gray h-2p w-100"></div>
                 `;
             }
 
-            $(divId).html(htmlToAdd);
+            $('.remedios').filter(function(){return this.value==idGaveta}).html(htmlToAdd);
+
+            $(".deletaRemedio").prop("onclick", null).off("click");
+            $(".deletaRemedio").on("click", function () { 
+                let deleteIcon = $(this);
+
+                $.ajax({
+                    "url": window.location.origin + "/deletaRemedio",
+                    "method": "DELETE",
+                    "data": "idRemedio=" + $(deleteIcon).attr("value"),
+                    dataType: "json",
+                    success: function (retorno) {
+                        $(deleteIcon).remove();
+                        consultaHorarios();
+                    }
+                });
+            });
         }
     });
 }

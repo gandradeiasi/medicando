@@ -7,7 +7,7 @@ app.config["JSON_AS_ASCII"] = False
 
 chaveAuth = "#$seC"
 
-# Funções de renderização de view
+# VIEW
 
 
 @app.route("/")
@@ -20,28 +20,19 @@ def telaHome():
     return render_template("index.html")
 
 
-# Funções de serviço
+# POST
 
 @app.route("/novoRemedio", methods=["POST"])
 def novoRemedio():
     idGaveta = request.form["idGaveta"]
-    nome = request.form["hora"]
+    nome = request.form["nome"]
     icone = request.form["icone"]
     
     sqlQuery("INSERT into remedio SET nome = '%s', icone = '%s', id_gaveta = '%s'" % (nome, icone, idGaveta))
 
     return jsonify({"msg": "ok"})
 
-@app.route("/consultaRemedios")
-def consultaRemedios():
-    idGaveta = request.args.get("idGaveta")
-    
-    data = []
 
-    for retorno in select("SELECT id, nome, icone FROM remedio WHERE id_gaveta = %s" % (idGaveta)):
-        data.append(toJsonString({"id": retorno[0], "nome": retorno[1], "icone": retorno[2]}))
-
-    return jsonify(data)
 
 @app.route("/programarHorario", methods=["POST"])
 def programarHorario():
@@ -60,6 +51,8 @@ def registrar():
     sqlQuery("INSERT into usuario SET email = '%s', senha = '%s'" % (email, str(hash(senha))))
     
     return jsonify({"msg": "ok"})
+
+# GET
 
 
 @app.route("/login")
@@ -90,6 +83,27 @@ def horarioGavetas():
 
     return jsonify(data)
 
+@app.route("/consultaRemedios")
+def consultaRemedios():
+    idGaveta = request.args.get("idGaveta")
+    
+    data = []
+
+    for retorno in select("SELECT id, nome, icone FROM remedio WHERE id_gaveta = %s" % (idGaveta)):
+        data.append(toJsonString({"id": retorno[0], "nome": retorno[1], "icone": retorno[2]}))
+
+    return jsonify(data)
+
+
+# DELETE
+
+@app.route("/deletaRemedio", methods=["DELETE"])
+def deletaRemedio():
+    idRemedio = request.form["idRemedio"]
+    
+    sqlQuery("DELETE FROM remedio WHERE id = '%s'" % (idRemedio))
+
+    return jsonify({"msg": "ok"})
 
 # Funções auxiliares
 

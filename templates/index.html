@@ -54,15 +54,15 @@
 			<div class="col-lg-4">
 				<div class="square-horario mx-auto lh-1 mb-4">
 					<div class="green-bg white-color p-3 round-border d-flex align-items-center">
-						<h3 class="text-center mb-0 flex-fill" id="horario1">Não programado</h3>
+						<h3 class="mb-0 flex-fill" id="horario1">Não programado</h3>
 						<i id="editHorario1" class="fas fa-pencil-alt fa-2x editHorario" data-toggle="modal"
 							data-target="#modalRegistrarHorario"></i>
 					</div>
 					<div class="remedios-wrapper">
-						<div id="remedios1">
+						<div id="remedios1" class="remedios">
 						</div>
 						<div class="py-3 text-center">
-							<i id="addRemedio1" class="fas fa-plus cursor-pointer fa-2x mx-3" data-toggle="modal"
+							<i id="addRemedio1" class="fas fa-plus cursor-pointer fa-2x mx-3 addRemedio" data-toggle="modal"
 								data-target="#modalNovoRemedio"></i>
 						</div>
 					</div>
@@ -71,15 +71,15 @@
 			<div class="col-lg-4">
 				<div class="square-horario mx-auto lh-1 mb-4">
 					<div class="green-bg white-color p-3 round-border d-flex align-items-center">
-						<h3 class="text-center mb-0 flex-fill" id="horario2">Não programado</h3>
+						<h3 class="mb-0 flex-fill" id="horario2">Não programado</h3>
 						<i id="editHorario2" class="fas fa-pencil-alt fa-2x editHorario" data-toggle="modal"
 							data-target="#modalRegistrarHorario"></i>
 					</div>
 					<div class="remedios-wrapper">
-						<div id="remedios2">
+						<div id="remedios2" class="remedios">
 						</div>
 						<div class="py-3 text-center">
-							<i id="addRemedio2" class="fas fa-plus cursor-pointer fa-2x mx-3" data-toggle="modal"
+							<i id="addRemedio2" class="fas fa-plus cursor-pointer fa-2x mx-3 addRemedio" data-toggle="modal"
 								data-target="#modalNovoRemedio"></i>
 						</div>
 					</div>
@@ -88,15 +88,15 @@
 			<div class="col-lg-4">
 				<div class="square-horario mx-auto lh-1">
 					<div class="green-bg white-color p-3 round-border d-flex align-items-center">
-						<h3 class="text-center mb-0 flex-fill" id="horario3">Não programado</h3>
+						<h3 class="mb-0 flex-fill" id="horario3">Não programado</h3>
 						<i id="editHorario3" class="fas fa-pencil-alt fa-2x editHorario" data-toggle="modal"
 							data-target="#modalRegistrarHorario"></i>
 					</div>
 					<div class="remedios-wrapper">
-						<div id="remedios3">
+						<div id="remedios3" class="remedios">
 						</div>
 						<div class="py-3 text-center">
-							<i id="addRemedio3" class="fas fa-plus cursor-pointer fa-2x mx-3" data-toggle="modal"
+							<i id="addRemedio3" class="fas fa-plus cursor-pointer fa-2x mx-3 addRemedio" data-toggle="modal"
 								data-target="#modalNovoRemedio"></i>
 						</div>
 					</div>
@@ -149,6 +149,7 @@
 				</div>
 				<form id="formNovoRemedio" method="POST" action="{{ url_for('novoRemedio') }}">
 					<div class="modal-body text-center">
+						<input type="hidden" name="idGaveta">
 						<label for="nome">Nome do remédio</label>
 						<input type="text" name="nome" class="form-control text-center">
 						<label for="icone" class="mt-2">Ícone do remédio</label>
