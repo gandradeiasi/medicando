@@ -1,4 +1,4 @@
-FROM flask import Flask, request, make_response, render_template, jsonify
+from flask import Flask, request, make_response, render_template, jsonify
 import mysql.connector
 import json
 
@@ -27,7 +27,7 @@ def programarHorario():
     idGaveta = request.form["idGaveta"]
     hora = request.form["hora"]
     
-    sqlQuery("UPDATE gaveta SET hora = '%s' WHERE idGaveta = '%s" % (hora, idGaveta))
+    sqlQuery("UPDATE gaveta SET hora = '%s' WHERE idGaveta = '%s'" % (hora, idGaveta))
     
     return jsonify({"msg": "ok"})
 
@@ -46,9 +46,7 @@ def login():
     email = request.args.get("email")
     senha = request.args.get("senha")
     
-    select = select("SELECT id FROM usuario WHERE email = '%s' AND senha = '%s'" % (email, str(hash(senha))))
-    
-    for retorno in select:
+    for retorno in select("SELECT id FROM usuario WHERE email = '%s' AND senha = '%s'" % (email, str(hash(senha)))):
         return jsonify({"id": retorno[0], "key": hash(chaveAuth + str(senha) + str(retorno[0]))})
     
     return jsonify({"msg": "erro"})
@@ -67,12 +65,10 @@ def horarioGavetas():
     data = []
     count = 0
 
-    select = select("SELECT id, hora FROM gaveta WHERE id_usuario = %s" % (idUsuario))
+    for retorno in select("SELECT id, hora FROM gaveta WHERE id_usuario = %s" % (idUsuario)):
+        data.append(toJsonString({"id": retorno[0], "hora": timeDeltaToHour(retorno[1])}))
 
-    for retorno in select:
-        data.append({"id": retorno[0], "hora": timeDeltaToHour(retorno[1])})
-
-    return json.dumps(data)
+    return jsonify(data)
 
 
 # Funções auxiliares
@@ -96,6 +92,7 @@ def sqlQuery(query):
 
 
 def select(query):
+    print(query)
     mydb = conectar()
     mycursor = mydb.cursor()
     mycursor.execute(query)
@@ -103,6 +100,12 @@ def select(query):
 
 
 def timeDeltaToHour(timeDelta):
+    if timeDelta == None:
+        return "Não programado"
+    
     hora = str(timeDelta.seconds // 3600).rjust(2, "0")
     minuto = str((timeDelta.seconds // 60) % 60).ljust(2, "0")
     return "%s:%s" % (hora, minuto)
+
+def toJsonString(objeto):
+    return json.dumps(objeto, ensure_ascii=False)

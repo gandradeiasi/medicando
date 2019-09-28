@@ -1,23 +1,17 @@
+DROP TABLE gaveta;
+DROP TABLE usuario;
+
 CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(256) DEFAULT NULL,
   `senha` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `gaveta` (
-  `id` int(11) NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
+  `id` int NOT NULL,
+  `id_usuario` int DEFAULT NULL,
   `hora` time DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (id_usuario) REFERENCES usuario(id)
-  );
-
-INSERT INTO gaveta (id)
-VALUES ('1');
-
-INSERT INTO gaveta (id)
-VALUES ('2');
-
-INSERT INTO gaveta (id)
-VALUES ('3');
+);

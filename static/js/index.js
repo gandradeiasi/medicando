@@ -6,6 +6,25 @@ $(document).ready(function() {
     $(".btn-home").on("click",function() {toggleHome("home")});
     $(".btn-medicamentos").on("click",function() {toggleHome("medicamentos")});
     $(".btn-farmacias").on("click",function(){toggleHome("farmacias")});
+    $(".editHorario").on("click", function() {$("#formRegistrarRemedio input[name='idGaveta']").val($(this).val())});
+
+    //Consulta horarios
+    consultaHorarios();
+
+    //Form
+    $("#formRegistrarRemedio").submit(function(e){
+        e.preventDefault();
+
+        $.ajax({
+            "url":$(this).attr("action"),
+            "method":"post",
+            "data": $(this).serialize(),
+            dataType: "json",
+            success: function(retorno) {
+                if (retorno.msg == "ok") consultaHorarios();
+            }
+        });
+    });
 });
 
 //Funçoes globais
@@ -39,4 +58,21 @@ function toggleHome(tela) {
         case "medicamentos": $("#tela-medicamentos").show(); break;
         case "farmacias": $("#tela-farmacias").show(); break;
     }
+}
+
+function consultaHorarios() {
+    $.ajax({
+        "url":window.location.origin + "/horarioGavetas?idUsuario=" + getCookie("id"),
+        "dataType": "json",
+        success: function(retorno) {
+            $("#horario1").html(JSON.parse(retorno[0]).hora);
+            $("#editHorario1").val(JSON.parse(retorno[0]).id);
+
+            $("#horario2").html(JSON.parse(retorno[1]).hora);
+            $("#editHorario2").val(JSON.parse(retorno[1]).id);
+
+            $("#horario3").html(JSON.parse(retorno[2]).hora);
+            $("#edithorario3").val(JSON.parse(retorno[2]).id);
+        }
+    });
 }
