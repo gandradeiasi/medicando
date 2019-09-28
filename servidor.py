@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template, jsonify
+FROM flask import Flask, request, make_response, render_template, jsonify
 import mysql.connector
 import json
 
@@ -9,57 +9,67 @@ chaveAuth = "#$seC"
 
 # Funções de renderização de view
 
+
 @app.route("/")
 def telaLogin():
     return render_template("login.html")
+
 
 @app.route("/home")
 def telaHome():
     return render_template("index.html")
 
 
-
 # Funções de serviço
+
+@app.route("/programarHorario", methods=["POST"])
+def programarHorario():
+    idGaveta = request.form["idGaveta"]
+    hora = request.form["hora"]
+    
+    sqlQuery("UPDATE gaveta SET hora = '%s' WHERE idGaveta = '%s" % (hora, idGaveta))
+    
+    return jsonify({"msg": "ok"})
 
 @app.route("/registrar", methods=["POST"])
 def registrar():
     email = request.form["email"]
     senha = request.form["senha"]
-    sqlQuery("insert into paciente set email = '" + email + "', senha = '" + str(hash(senha)) + "'")
-    return jsonify({"msg":"ok"})
+    
+    sqlQuery("INSERT into usuario SET email = '%s', senha = '%s'" % (email, str(hash(senha))))
+    
+    return jsonify({"msg": "ok"})
 
 
 @app.route("/login")
 def login():
     email = request.args.get("email")
     senha = request.args.get("senha")
-    for retorno in select("select id from paciente where email = '" + email + "' and senha = '" + str(hash(senha)) + "'"):
-        return jsonify({"id":retorno[0],"key":hash(chaveAuth+str(senha)+str(retorno[0]))})
-    return jsonify({"msg":"erro"})
+    
+    select = select("SELECT id FROM usuario WHERE email = '%s' AND senha = '%s'" % (email, str(hash(senha))))
+    
+    for retorno in select:
+        return jsonify({"id": retorno[0], "key": hash(chaveAuth + str(senha) + str(retorno[0]))})
+    
+    return jsonify({"msg": "erro"})
 
 
 @app.route("/horarioGaveta")
 def horarioGaveta():
     idGaveta = request.args.get("idGaveta")
 
-    return (
-        "{"
-        + timeDeltaToHour(
-            select("select hora from gaveta where id = " + idGaveta)[0][0]
-        )
-        + "}"
-    )
+    return "{%s}" % (timeDeltaToHour(select("SELECT hora FROM gaveta WHERE id = " + idGaveta)[0][0]))
 
 
 @app.route("/horarioGavetas")
 def horarioGavetas():
-    idPaciente = request.args.get("idUsuario")
+    idUsuario = request.args.get("idUsuario")
     data = []
     count = 0
 
-    for retorno in select(
-        "select id, hora from gaveta where id_paciente = " + idPaciente
-    ):
+    select = select("SELECT id, hora FROM gaveta WHERE id_usuario = %s" % (idUsuario))
+
+    for retorno in select:
         data.append({"id": retorno[0], "hora": timeDeltaToHour(retorno[1])})
 
     return json.dumps(data)
@@ -84,16 +94,15 @@ def sqlQuery(query):
     mydb.commit()
     mydb.close()
 
+
 def select(query):
     mydb = conectar()
     mycursor = mydb.cursor()
     mycursor.execute(query)
     return mycursor.fetchall()
 
-def timeDeltaToHour(timeDelta):
-    return (
-        str(timeDelta.seconds // 3600).rjust(2, "0")
-        + ":"
-        + str((timeDelta.seconds // 60) % 60).ljust(2, "0")
-    )
 
+def timeDeltaToHour(timeDelta):
+    hora = str(timeDelta.seconds // 3600).rjust(2, "0")
+    minuto = str((timeDelta.seconds // 60) % 60).ljust(2, "0")
+    return "%s:%s" % (hora, minuto)
