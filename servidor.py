@@ -22,12 +22,33 @@ def telaHome():
 
 # Funções de serviço
 
+@app.route("/novoRemedio", methods=["POST"])
+def novoRemedio():
+    idGaveta = request.form["idGaveta"]
+    nome = request.form["hora"]
+    icone = request.form["icone"]
+    
+    sqlQuery("INSERT into remedio SET nome = '%s', icone = '%s', id_gaveta = '%s'" % (nome, icone, idGaveta))
+
+    return jsonify({"msg": "ok"})
+
+@app.route("/consultaRemedios")
+def consultaRemedios():
+    idGaveta = request.args.get("idGaveta")
+    
+    data = []
+
+    for retorno in select("SELECT id, nome, icone FROM remedio WHERE id_gaveta = %s" % (idGaveta)):
+        data.append(toJsonString({"id": retorno[0], "nome": retorno[1], "icone": retorno[2]}))
+
+    return jsonify(data)
+
 @app.route("/programarHorario", methods=["POST"])
 def programarHorario():
     idGaveta = request.form["idGaveta"]
     hora = request.form["hora"]
     
-    sqlQuery("UPDATE gaveta SET hora = '%s' WHERE idGaveta = '%s'" % (hora, idGaveta))
+    sqlQuery("UPDATE gaveta SET hora = '%s' WHERE id = '%s'" % (hora, idGaveta))
     
     return jsonify({"msg": "ok"})
 
@@ -63,7 +84,6 @@ def horarioGaveta():
 def horarioGavetas():
     idUsuario = request.args.get("idUsuario")
     data = []
-    count = 0
 
     for retorno in select("SELECT id, hora FROM gaveta WHERE id_usuario = %s" % (idUsuario)):
         data.append(toJsonString({"id": retorno[0], "hora": timeDeltaToHour(retorno[1])}))
@@ -104,7 +124,7 @@ def timeDeltaToHour(timeDelta):
         return "Não programado"
     
     hora = str(timeDelta.seconds // 3600).rjust(2, "0")
-    minuto = str((timeDelta.seconds // 60) % 60).ljust(2, "0")
+    minuto = str((timeDelta.seconds // 60) % 60).rjust(2, "0")
     return "%s:%s" % (hora, minuto)
 
 def toJsonString(objeto):

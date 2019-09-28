@@ -1,3 +1,4 @@
+DROP TABLE remedio;
 DROP TABLE gaveta;
 DROP TABLE usuario;
 
@@ -14,4 +15,13 @@ CREATE TABLE `gaveta` (
   `hora` time DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+);
+
+CREATE TABLE `remedio` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_gaveta` int NOT NULL,
+  `nome` varchar(256) NOT NULL,
+  `icone` int NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (id_gaveta) REFERENCES gaveta(id)
 );

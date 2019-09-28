@@ -139,6 +139,10 @@
 
 /* Elementos específicos */
 
+.editHorario {
+    cursor: pointer;
+}
+
 .b-black-1 {
     border: 1px solid black
 }

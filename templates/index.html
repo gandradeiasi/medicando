@@ -17,24 +17,18 @@
 	<!-- Header -->
 	<div class="container-fluid blue-bg">
 		<div class="container blue-bg align-items-center py-2 d-flex">
-			<button class="btn-profile d-flex btn-reset white-color">
-				<i class="fas fa-user profile-icon align-self-center ml-2"></i>
-				<span class="align-self-center ml-2">Perfil</span>
-				<i class="fas fa-caret-down align-self-center ml-2"></i>
-			</button>
-			<span class="flex-fill text-right dt-only">
+			<span class="flex-fill text-left dt-only">
 				<button class="btn-menu-dt flex-fill btn-home">
 					<i class="fas fa-home"></i>
-					<div class="w-100">Início</div>
-				</button>
-				<span class="divisoria-branca"></span>
-				<button class="btn-menu-dt flex-fill btn-medicamentos">
-					<i class="fas fa-capsules"></i>
-					<div class="w-100">Medicamentos</div>
+					<div class="w-100">Horários</div>
 				</button>
 				<button class="btn-menu-dt flex-fill btn-farmacias">
 					<i class="fas fa-globe-americas"></i>
 					<div class="w-100">Farmácias</div>
+				</button>
+				<button class="btn-menu-dt flex-fill float-right btn-sair">
+					<i class="fas fa-sign-out-alt"></i>
+					<div class="w-100">Sair</div>
 				</button>
 			</span>
 		</div>
@@ -61,57 +55,51 @@
 				<div class="square-horario mx-auto lh-1 mb-4">
 					<div class="green-bg white-color p-3 round-border d-flex align-items-center">
 						<h3 class="text-center mb-0 flex-fill" id="horario1">Não programado</h3>
-						<i id="editHorario1" class="fas fa-edit fa-2x editHorario"  data-toggle="modal" data-target="#modalRegistrarHorario"></i>
+						<i id="editHorario1" class="fas fa-pencil-alt fa-2x editHorario" data-toggle="modal"
+							data-target="#modalRegistrarHorario"></i>
 					</div>
 					<div class="remedios-wrapper">
-						<!-- <div class="d-flex py-3">
-							<i class="fas fa-capsules align-self-center fa-2x mx-3"></i>
-							<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
-							<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
+						<div id="remedios1">
 						</div>
-						<div class="bg-gray h-2p w-100"></div>
-						<div class="d-flex py-3">
-							<i class="fas fa-tablets align-self-center fa-2x mx-3"></i>
-							<span class="align-self-center">Diclofenac Sodium<br><small>100mg, Tome 1</small></span>
-							<span class="align-self-center flex-fill text-right pr-3">PERDIDO!</span>
-						</div> -->
+						<div class="py-3 text-center">
+							<i id="addRemedio1" class="fas fa-plus cursor-pointer fa-2x mx-3" data-toggle="modal"
+								data-target="#modalNovoRemedio"></i>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="square-horario mx-auto lh-1 mb-4">
 					<div class="green-bg white-color p-3 round-border d-flex align-items-center">
-						<h3 class="text-center mb-0 flex-fill" id="horario2">--:--</h3>
-						<i id="editHorario3" class="fas fa-edit fa-2x editHorario" data-toggle="modal" data-target="#modalRegistrarHorario"></i>
+						<h3 class="text-center mb-0 flex-fill" id="horario2">Não programado</h3>
+						<i id="editHorario2" class="fas fa-pencil-alt fa-2x editHorario" data-toggle="modal"
+							data-target="#modalRegistrarHorario"></i>
 					</div>
 					<div class="remedios-wrapper">
+						<div id="remedios2">
+						</div>
+						<div class="py-3 text-center">
+							<i id="addRemedio2" class="fas fa-plus cursor-pointer fa-2x mx-3" data-toggle="modal"
+								data-target="#modalNovoRemedio"></i>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="square-horario mx-auto lh-1">
 					<div class="green-bg white-color p-3 round-border d-flex align-items-center">
-						<h3 class="text-center mb-0 flex-fill" id="horario3">--:--</h3>
-						<i id="editHorario3" class="fas fa-edit fa-2x editHorario" data-toggle="modal" data-target="#modalRegistrarHorario"></i>
+						<h3 class="text-center mb-0 flex-fill" id="horario3">Não programado</h3>
+						<i id="editHorario3" class="fas fa-pencil-alt fa-2x editHorario" data-toggle="modal"
+							data-target="#modalRegistrarHorario"></i>
 					</div>
 					<div class="remedios-wrapper">
+						<div id="remedios3">
+						</div>
+						<div class="py-3 text-center">
+							<i id="addRemedio3" class="fas fa-plus cursor-pointer fa-2x mx-3" data-toggle="modal"
+								data-target="#modalNovoRemedio"></i>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Medicamentos -->
-	<div id="tela-medicamentos">
-		<div class="container">
-			<div class="lista-remedios mx-auto">
-				<div class="d-flex py-3">
-					<i class="fas fa-capsules align-self-center fa-2x mx-3"></i>
-					<span class="align-self-center">Diclofenac Sodium<br><small>100 mg</small></span>
-				</div>
-				<div class="bg-gray h-2p w-100"></div>
-				<div class="d-flex py-3">
-					<i class="fas fa-capsules align-self-center fa-2x mx-3"></i>
-					<span class="align-self-center">Diclofenac Sodium<br><small>100 mg</small></span>
 				</div>
 			</div>
 		</div>
@@ -135,13 +123,58 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form id="formRegistrarRemedio" method="POST" action="{{ url_for('programarHorario') }}">
+				<form id="formRegistrarHorario" method="POST" action="{{ url_for('programarHorario') }}">
 					<div class="modal-body text-center">
-						<input type="time" name="hora" class="b-black-1">
+						<input type="time" name="hora" class="form-control">
 						<input type="hidden" name="idGaveta">
 					</div>
 					<div class="modal-footer">
-						<input type="submit" id="confirmarHorario" data-dismiss="modal" class="btn btn-primary" value="Confirmar">
+						<input type="submit" id="confirmarHorario" class="btn btn-primary" value="Confirmar">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- MODAL NOVO REMÉDIO -->
+	<div id="modalNovoRemedio" class="modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Adicionar remédio à gaveta</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form id="formNovoRemedio" method="POST" action="{{ url_for('novoRemedio') }}">
+					<div class="modal-body text-center">
+						<label for="nome">Nome do remédio</label>
+						<input type="text" name="nome" class="form-control text-center">
+						<label for="icone" class="mt-2">Ícone do remédio</label>
+						<div class="d-flex">
+							<div class="flex-fill text-center">
+								<label>
+									<input type="radio" name="icone" value="0" checked>
+									<i class='fas fa-tablets align-self-center fa-2x mx-3'></i>
+								</label>
+							</div>
+							<div class="flex-fill text-center">
+								<label>
+									<input type="radio" name="icone" value="1">
+									<i class='fas fa-capsules align-self-center fa-2x mx-3'></i>
+								</label>
+							</div>
+							<div class="flex-fill text-center">
+								<label>
+									<input type="radio" name="icone" value="2">
+									<i class='fas fa-pills align-self-center fa-2x mx-3'></i>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="submit" id="confirmarHorario" class="btn btn-primary" value="Confirmar">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 					</div>
 				</form>
