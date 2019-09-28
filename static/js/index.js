@@ -8,6 +8,7 @@ $(document).ready(function () {
     $(".btn-farmacias").on("click", function () { toggleHome("farmacias") });
     $(".editHorario").on("click", function () { $("#formRegistrarHorario input[name='idGaveta']").val($(this).val()) });
     $(".addRemedio").on("click", function () { $("#formNovoRemedio input[name='idGaveta']").val($(this).val()) });
+    $(".btn-sair").on("click", function() { window.location.href = window.location.origin } );
 
     //Consulta horarios
     consultaHorarios();
@@ -19,7 +20,7 @@ $(document).ready(function () {
         $.ajax({
             "url": $(this).attr("action"),
             "method": "post",
-            "data": $(this).serialize(),
+            "data": $(this).serialize()+dataAuth(),
             dataType: "json",
             success: function (retorno) {
                 $("#modalRegistrarHorario").modal("hide");
@@ -34,7 +35,7 @@ $(document).ready(function () {
         $.ajax({
             "url": $(this).attr("action"),
             "method": "post",
-            "data": $(this).serialize(),
+            "data": $(this).serialize()+dataAuth(),
             dataType: "json",
             success: function (retorno) {
                 $("#modalNovoRemedio").modal("hide");
@@ -142,7 +143,7 @@ function consultaRemedios(idGaveta) {
                 $.ajax({
                     "url": window.location.origin + "/deletaRemedio",
                     "method": "DELETE",
-                    "data": "idRemedio=" + $(deleteIcon).attr("value"),
+                    "data": "idRemedio=" + $(deleteIcon).attr("value") + dataAuth(),
                     dataType: "json",
                     success: function (retorno) {
                         $(deleteIcon).remove();
@@ -152,4 +153,8 @@ function consultaRemedios(idGaveta) {
             });
         }
     });
+}
+
+function dataAuth() {
+    return "&idAuth=" + getCookie("id") + "&key=" + getCookie("key")
 }

@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    //limpa cookies
+    setCookie("id","",7);
+    setCookie("key","",7);
+
     //esconde frames
     $("#tela-login, #tela-registro").hide();
 
