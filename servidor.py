@@ -67,13 +67,10 @@ def registrar():
     return jsonify({"msg": "ok"})
 
 
-# GET
-
-
-@app.route("/login")
+@app.route("/login", methods=["POST"])
 def login():
-    email = request.args.get("email")
-    senha = request.args.get("senha")
+    email = request.form["email"]
+    senha = request.form["senha"]
 
     for retorno in select(
         "SELECT id FROM usuario WHERE email = '%s' AND senha = '%s'"
@@ -89,6 +86,9 @@ def login():
         )
 
     return jsonify({"msg": "erro"})
+
+
+# GET
 
 
 @app.route("/horarioGaveta")
