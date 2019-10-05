@@ -1,9 +1,8 @@
-from flask import Flask, request, make_response, render_template, jsonify
+from flask import Flask, request, render_template, jsonify
 import mysql.connector
 import json
 import datetime
 import hmac
-import binascii
 
 app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
@@ -29,7 +28,10 @@ def telaHome():
 
 @app.route("/novoRemedio", methods=["POST"])
 def novoRemedio():
-    checkAuth()
+    if checkAuth() == False:
+        return jsonify({"msg": "erro"})
+
+    print("Autenticou novo remedio")
 
     idGaveta = request.form["idGaveta"]
     nome = request.form["nome"]
@@ -45,7 +47,8 @@ def novoRemedio():
 
 @app.route("/programarHorario", methods=["POST"])
 def programarHorario():
-    checkAuth()
+    if checkAuth() == False:
+        return jsonify({"msg": "erro"})
 
     idGaveta = request.form["idGaveta"]
     hora = request.form["hora"]
@@ -136,7 +139,8 @@ def consultaRemedios():
 
 @app.route("/deletaRemedio", methods=["DELETE"])
 def deletaRemedio():
-    checkAuth()
+    if checkAuth() == False:
+        return jsonify({"msg": "erro"})
 
     idRemedio = request.form["idRemedio"]
 
@@ -153,12 +157,14 @@ def checkAuth():
     
     id = request.form["idAuth"]
     key = request.form["key"]
-
-    for retorno in select(
-        "SELECT senha FROM usuario WHERE id = '%s'"% (id)
-    ):
-        if key != str(crypto(chaveAuth + retorno[0] + id + str(datetime.date.today()))):
-            render_template("login.html")
+    retorno = select("SELECT senha FROM usuario WHERE id = '%s'" % (id))
+    try:
+        if key != crypto(chaveAuth + retorno[0][0] + id + str(datetime.date.today())):
+            return False
+        return True  
+    except:
+        return False
+    
 
 
 def conectar():
