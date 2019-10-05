@@ -24,28 +24,27 @@
             <i class="fas fa-arrow-left fa-2x cursor-pointer" onclick='toggleLogin("inicio");'></i>
             <img src="{{url_for('static',filename='img/logo-medicando.png')}}" class="d-block mx-auto logo-medicando mb-5">
             <h1 class="text-center color-blue h-inicio mb-5">Bem Vindo!</h1>
-            <form id="formLogin" method="get" action="{{ url_for('login') }}">
+            <form id="formLogin" method="post" action="{{ url_for('login') }}">
                 <i class="far fa-envelope i-input-inicio"></i>
                 <input type="text" name="email" class="d-block mx-auto input-inicio mb-4" placeholder="Seu e-mail">
                 <i class="fas fa-key i-input-inicio"></i>
                 <input type="password" name="senha" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-5">
                 <input class="d-block mx-auto btn-wide blue-bg mb-3" type="submit" value="Login">
             </form>
-            <a class="text-center d-block link-medicando">Esqueceu sua senha?</a>
         </div>
         <div class="center-xy" id="tela-registro">
             <i class="fas fa-arrow-left fa-2x mt-50p position-absolute cursor-pointer" onclick='toggleLogin("inicio");'></i>
             <h1 class="text-center color-blue h-inicio my-5">Registrar</h1>
             <form id="formRegistrar" method="post" action="{{ url_for('registrar') }}">
-                <label for="registro-email" class="w-100 mb-0">Escolha seu e-mail</label>
+                <label for="registro-email" class="w-100 mb-0 d-block">Escolha seu e-mail</label>
                 <i class="far fa-envelope i-input-inicio"></i>
                 <input type="text" name="email" class="d-block mx-auto input-inicio mb-4" id="registro-email"
                     placeholder="Seu e-mail">
-                <label for="registro-senha" class="w-100 mb-0">Escolha sua senha</label>
+                <label for="registro-senha" class="w-100 mb-0 d-block">Escolha sua senha</label>
                 <i class="fas fa-key i-input-inicio"></i>
                 <input type="password" name="senha" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-3"
                     id="registro-senha">
-                <label for="registro-confirma-senha" class="w-100 mb-0">Confirme sua senha</label>
+                <label for="registro-confirma-senha" class="w-100 mb-0 d-block">Confirme sua senha</label>
                 <i class="fas fa-key i-input-inicio"></i>
                 <input type="password" placeholder="Sua senha" class="d-block mx-auto input-inicio mb-4"
                     id="registro-confirma-senha">

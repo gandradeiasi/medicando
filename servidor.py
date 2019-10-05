@@ -155,8 +155,7 @@ def checkAuth():
     key = request.form["key"]
 
     for retorno in select(
-        "SELECT senha FROM usuario WHERE email = '%s' AND senha = '%s'"
-        % (email, str(crypto(senha)))
+        "SELECT senha FROM usuario WHERE id = '%s'"% (id)
     ):
         if key != str(crypto(chaveAuth + retorno[0] + id + str(datetime.date.today()))):
             render_template("login.html")

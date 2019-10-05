@@ -25,7 +25,9 @@ $(document).ready(function() {
         e.preventDefault();
 
         $.ajax({
-            "url":$(this).attr("action")+"?"+$(this).serialize(),
+            "url":$(this).attr("action"),
+            "method":"post",
+            "data": $(this).serialize(),
             dataType: "json",
             success: function(retorno) {
                 if (retorno.msg != "erro"){
