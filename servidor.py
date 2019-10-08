@@ -57,6 +57,17 @@ def programarHorario():
 
     return jsonify({"msg": "ok"})
 
+@app.route("/limparHorario", methods=["POST"])
+def limparHorario():
+    if checkAuth() == False:
+        return jsonify({"msg": "erro"})
+
+    idGaveta = request.form["idGaveta"]
+
+    sqlQuery("UPDATE gaveta SET hora = NULL WHERE id = '%s'" % (idGaveta))
+
+    return jsonify({"msg": "ok"})
+
 
 @app.route("/registrar", methods=["POST"])
 def registrar():
