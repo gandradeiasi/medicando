@@ -29,6 +29,21 @@ $(document).ready(function () {
         });
     });
 
+    $("#limparHorario").on("click", function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            "url": $("#formRegistrarHorario").attr("action"),
+            "method": "post",
+            "data": "idGaveta=" + $("#formRegistrarHorario input[name='idGaveta']").val().toString() + "&hora=NULL" +dataAuth(),
+            dataType: "json",
+            success: function (retorno) {
+                $("#modalRegistrarHorario").modal("hide");
+                if (retorno.msg == "ok") consultaHorarios();
+            }
+        });
+    });
+
     $("#formNovoRemedio").submit(function (e) {
         e.preventDefault();
 

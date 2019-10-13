@@ -52,8 +52,11 @@ def programarHorario():
 
     idGaveta = request.form["idGaveta"]
     hora = request.form["hora"]
-
-    sqlQuery("UPDATE gaveta SET hora = '%s' WHERE id = '%s'" % (hora, idGaveta))
+    
+    if hora == 'NULL':
+        sqlQuery("UPDATE gaveta SET hora = NULL WHERE id = '%s'" % (idGaveta))
+    else :
+        sqlQuery("UPDATE gaveta SET hora = '%s' WHERE id = '%s'" % (hora, idGaveta))
 
     return jsonify({"msg": "ok"})
 
