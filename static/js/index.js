@@ -8,7 +8,7 @@ $(document).ready(function () {
     $(".btn-farmacias").on("click", function () { toggleHome("farmacias") });
     $(".editHorario").on("click", function () { $("#formRegistrarHorario input[name='idGaveta']").val($(this).val()) });
     $(".addRemedio").on("click", function () { $("#formNovoRemedio input[name='idGaveta']").val($(this).val()) });
-    $(".btn-sair").on("click", function() { window.location.href = window.location.origin } );
+    $(".btn-sair").on("click", function () { window.location.href = window.location.origin });
 
     //Consulta horarios
     consultaHorarios();
@@ -20,7 +20,7 @@ $(document).ready(function () {
         $.ajax({
             "url": $(this).attr("action"),
             "method": "post",
-            "data": $(this).serialize()+dataAuth(),
+            "data": $(this).serialize() + dataAuth(),
             dataType: "json",
             success: function (retorno) {
                 $("#modalRegistrarHorario").modal("hide");
@@ -35,7 +35,7 @@ $(document).ready(function () {
         $.ajax({
             "url": $("#formRegistrarHorario").attr("action"),
             "method": "post",
-            "data": "idGaveta=" + $("#formRegistrarHorario input[name='idGaveta']").val().toString() + "&hora=NULL" +dataAuth(),
+            "data": "idGaveta=" + $("#formRegistrarHorario input[name='idGaveta']").val().toString() + "&hora=NULL" + dataAuth(),
             dataType: "json",
             success: function (retorno) {
                 $("#modalRegistrarHorario").modal("hide");
@@ -50,7 +50,7 @@ $(document).ready(function () {
         $.ajax({
             "url": $(this).attr("action"),
             "method": "post",
-            "data": $(this).serialize()+dataAuth(),
+            "data": $(this).serialize() + dataAuth(),
             dataType: "json",
             success: function (retorno) {
                 $("#modalNovoRemedio").modal("hide");
@@ -98,17 +98,26 @@ function consultaHorarios() {
         "url": window.location.origin + "/horarioGavetas?idUsuario=" + getCookie("id"),
         "dataType": "json",
         success: function (retorno) {
-            $("#horario1").html(JSON.parse(retorno[0]).hora);
-            $("#editHorario1, #remedios1, #addRemedio1").val(JSON.parse(retorno[0]).id);
-            consultaRemedios(JSON.parse(retorno[0]).id);
+            try {
+                $("#horario1").html(JSON.parse(retorno[0]).hora);
+                $("#editHorario1, #remedios1, #addRemedio1").val(JSON.parse(retorno[0]).id);
+                consultaRemedios(JSON.parse(retorno[0]).id);
+            }
+            catch (e) { }
 
-            $("#horario2").html(JSON.parse(retorno[1]).hora);
-            $("#editHorario2, #remedios2, #addRemedio2").val(JSON.parse(retorno[1]).id);
-            consultaRemedios(JSON.parse(retorno[1]).id);
+            try {
+                $("#horario2").html(JSON.parse(retorno[1]).hora);
+                $("#editHorario2, #remedios2, #addRemedio2").val(JSON.parse(retorno[1]).id);
+                consultaRemedios(JSON.parse(retorno[1]).id);
+            }
+            catch (e) { }
 
-            $("#horario3").html(JSON.parse(retorno[2]).hora);
-            $("#editHorario3, #remedios3, #addRemedio3").val(JSON.parse(retorno[2]).id);
-            consultaRemedios(JSON.parse(retorno[2]).id);
+            try {
+                $("#horario3").html(JSON.parse(retorno[2]).hora);
+                $("#editHorario3, #remedios3, #addRemedio3").val(JSON.parse(retorno[2]).id);
+                consultaRemedios(JSON.parse(retorno[2]).id);
+            }
+            catch (e) { }
         }
     });
 }
@@ -149,10 +158,10 @@ function consultaRemedios(idGaveta) {
                 `;
             }
 
-            $('.remedios').filter(function(){return this.value==idGaveta}).html(htmlToAdd);
+            $('.remedios').filter(function () { return this.value == idGaveta }).html(htmlToAdd);
 
             $(".deletaRemedio").prop("onclick", null).off("click");
-            $(".deletaRemedio").on("click", function () { 
+            $(".deletaRemedio").on("click", function () {
                 let deleteIcon = $(this);
 
                 $.ajax({
