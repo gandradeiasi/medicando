@@ -102,8 +102,9 @@ function consultaHorarios() {
                 $("#horario1").html(JSON.parse(retorno[0]).hora);
                 $("#editHorario1, #remedios1, #addRemedio1").val(JSON.parse(retorno[0]).id);
                 consultaRemedios(JSON.parse(retorno[0]).id);
+                console.log(retorno[0]).hora
             }
-            catch (e) { }
+            catch (e) {  }
 
             try {
                 $("#horario2").html(JSON.parse(retorno[1]).hora);

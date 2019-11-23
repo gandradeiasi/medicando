@@ -8,10 +8,10 @@
 //conflito com as portas ----- alterar portas wifi
 SoftwareSerial esp8266(52,50);    //----- pinos para o modulo wifi
 RTC_DS3231 rtc; //OBJETO DO TIPO RTC_DS3231
-String REDE = "TORTUGA";
-String SENHA = "jack sparrow";
+String REDE = "Lobo";
+String SENHA = "lobo1234";
 int intervaloComando = 250;
-String ip = "192.168.0.8";
+String ip = "192.168.43.149";
 
 //motor de passo
 int maxstep = 268;  //Numero de Passos exatos para o curso da gaveta - constante
@@ -204,6 +204,7 @@ String sendData(String command)
 }
 
 int testarComando(String comando) {
+  ativaGaveta();
   if (comando.indexOf("OK") > -1) return 1;
   else if (comando.indexOf("GOT IP") > -1) return 1;
   return 0;
